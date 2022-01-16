@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import HeaderLink from "../components/HeaderLink";
 
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -10,6 +11,11 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 function home() {
   return (
     <div className="space-y-10 relative">
+      <Head>
+        <title>LinkedIn</title>
+        <meta name="description" content="LinkedIn" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <header className="flex justify-around items-center py-4">
         <div className="relative w-36 h-10">
           <Image
