@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import Image from "next/image";
 import HeaderLink from "./HeaderLink";
@@ -10,16 +12,25 @@ import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import { Avatar } from "@mui/material";
 
 function Header() {
+  const [mounted, setMounted] = useState(false);
+  const { setTheme, resolvedTheme, theme } = useTheme();
+
+  // After mounting, we have access to the theme
+  useEffect(() => setMounted(true), []);
+
   return (
     <header>
       {/* Left */}
       <div className="flex items-center space-x-2 w-full max-w-xs">
-        <Image
-          src="https://rb.gy/bizvqj"
-          width={45}
-          height={45}
-          alt="LinkedIn logo white"
-        />
+        {mounted && (
+          <>
+            {resolvedTheme === "dark" ? (
+              <Image src="https://rb.gy/bizvqj" width={45} height={45} />
+            ) : (
+              <Image src="https://rb.gy/dpmd9s" width={55} height={55} />
+            )}
+          </>
+        )}
         <div className="flex items-center space-x-1 dark:md:bg-gray-700 py-2.5 px-4 rounded w-full">
           <SearchRoundedIcon />
           <input
@@ -38,6 +49,14 @@ function Header() {
         <HeaderLink Icon={NotificationsIcon} text="Notifications" feed />
         <HeaderLink Icon={Avatar} text="Me" feed avatar hidden />
         <HeaderLink Icon={AppsOutlinedIcon} text="Work" feed hidden />
+        {/* Dark mode toggle */}
+        <div
+          className={`bg-gray-600 flex items-center px-0.5 rounded-full h-6 w-12 cursor-pointer flex-shrink-0 relative`}
+        >
+          <span className="absolute left-0">🌜</span>
+
+          <span className="absolute right-0.5">🌞</span>
+        </div>
       </div>
     </header>
   );
