@@ -2,8 +2,11 @@ import Image from "next/image";
 import { Avatar } from "@mui/material";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import { useSession } from "next-auth/react";
 
 function Sidebar() {
+  const { data: session } = useSession();
+
   return (
     <div className="space-y-2 min-w-max max-w-lg">
       {/* Top */}
@@ -18,7 +21,7 @@ function Sidebar() {
         </div>
         <Avatar
           //   onClick={signOut}
-          //   src={session?.user?.image}
+          src={session?.user?.image}
           className="!h-14 !w-14 !border-2 !absolute !top-4 !cursor-pointer"
         />
         <div className="mt-5 py-4 space-x-0.5">
