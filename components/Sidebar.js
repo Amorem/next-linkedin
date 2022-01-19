@@ -54,6 +54,17 @@ function Sidebar() {
         </div>
       </div>
       {/* Bottom */}
+      <div className="hidden md:flex bg-white dark:bg-[#1D2226] text-black/70 dark:text-white/75 rounded-lg overflow-hidden flex-col space-y-2 pt-2.5 sticky top-20 border border-gray-300 dark:border-none">
+        <p className="sidebarLink">Groups</p>
+        <div className="flex items-center justify-between">
+          <p className="sidebarLink">Events</p>
+          <AddRoundedIcon className="!h-5" />
+        </div>
+        <p className="sidebarLink">Followed Hastags</p>
+        <div className="sidebarButton text-center">
+          <h4 className="dark:text-white font-medium text-sm">Discover More</h4>
+        </div>
+      </div>
     </div>
   );
 }
